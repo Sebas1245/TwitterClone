@@ -7,6 +7,7 @@
 //
 
 #import "APIManager.h"
+#import "Tweet.h"
 
 static NSString * const baseURLString = @"https://api.twitter.com";
 
@@ -52,29 +53,21 @@ static NSString * const baseURLString = @"https://api.twitter.com";
     return self;
 }
 
-- (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion {
+- (void)getHomeTimelineWithCompletion:(void(^)(NSMutableArray *tweets, NSError *error))completion {
     
-    [self GET:@"1.1/statuses/home_timeline.json"
-   parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+    [self GET:@"1.1/statuses/home_timeline.json" parameters:nil progress:nil
+      success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
        
-       // Manually cache the tweets. If the request fails, restore from cache if possible.
-       NSData *data = [NSKeyedArchiver archivedDataWithRootObject:tweetDictionaries];
-       [[NSUserDefaults standardUserDefaults] setValue:data forKey:@"hometimeline_tweets"];
+        // Success
+        NSMutableArray *tweets = [Tweet tweetsWithArray:tweetDictionaries];
 
-       completion(tweetDictionaries, nil);
+        completion(tweets, nil);
        
-   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       
-       NSArray *tweetDictionaries = nil;
-       
-       // Fetch tweets from cache if possible
-       NSData *data = [[NSUserDefaults standardUserDefaults] valueForKey:@"hometimeline_tweets"];
-       if (data != nil) {
-           tweetDictionaries = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-       }
-       
-       completion(tweetDictionaries, error);
-   }];
+        }
+      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // There was en error
+        completion(nil, error);
+    }];
 }
 
 @end
