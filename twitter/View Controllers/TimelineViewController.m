@@ -88,9 +88,9 @@
 //    cell.tweet = tweet;
     
     // This should be refactored to be inside TweetCell.m
-    cell.screenName.text = tweet.user.screenName;
+    cell.screenName.text = tweet.user.name;
     cell.tweetText.text = tweet.text;
-    cell.userName.text = tweet.user.name;
+    cell.userName.text = [NSString stringWithFormat:@"@%@", tweet.user.screenName];
     cell.tweetDate.text = tweet.createdAtString;
     [cell.favsButton setTitle:[NSString stringWithFormat:@"%d",tweet.favoriteCount] forState:UIControlStateNormal];
     [cell.retweetsButton setTitle:[NSString stringWithFormat:@"%d", tweet.retweetCount] forState:UIControlStateNormal];
