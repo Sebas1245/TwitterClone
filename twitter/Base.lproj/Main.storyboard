@@ -85,13 +85,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Aziz Ansari" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKL-Br-Zd4">
-                                                    <rect key="frame" x="78" y="10" width="129" height="17"/>
+                                                    <rect key="frame" x="78" y="10" width="173" height="17"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="6/9/16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-WF-YI8">
-                                                    <rect key="frame" x="278" y="14" width="29" height="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6/9/16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-WF-YI8">
+                                                    <rect key="frame" x="365" y="14.333333333333336" width="29" height="12"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -121,7 +121,7 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@azizansari" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7x-5C-jhy">
-                                                    <rect key="frame" x="215" y="14" width="46" height="12"/>
+                                                    <rect key="frame" x="275" y="15" width="46" height="12"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -131,10 +131,10 @@
                                                 <constraint firstItem="WMq-CS-bKA" firstAttribute="leading" secondItem="bNy-Mt-4TC" secondAttribute="leading" constant="8" id="0Rw-K6-f8V"/>
                                                 <constraint firstItem="MLG-IO-frO" firstAttribute="top" secondItem="TqG-YR-coB" secondAttribute="top" id="0W8-66-Vm3"/>
                                                 <constraint firstItem="CQw-WF-YI8" firstAttribute="firstBaseline" secondItem="r7x-5C-jhy" secondAttribute="firstBaseline" id="0ax-bo-doW"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="CQw-WF-YI8" secondAttribute="trailing" constant="5" id="6Re-di-5JP"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CQw-WF-YI8" secondAttribute="trailing" id="6Re-di-5JP"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YdR-ZB-O25" secondAttribute="bottom" constant="63" id="Ag0-T6-Kcf"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="WMq-CS-bKA" secondAttribute="bottom" constant="85" id="EYQ-Zs-jdb"/>
-                                                <constraint firstItem="CQw-WF-YI8" firstAttribute="leading" secondItem="r7x-5C-jhy" secondAttribute="trailing" constant="17" id="Fs2-w0-Poy"/>
+                                                <constraint firstItem="CQw-WF-YI8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="r7x-5C-jhy" secondAttribute="trailing" constant="17" id="Fs2-w0-Poy"/>
                                                 <constraint firstItem="YdR-ZB-O25" firstAttribute="top" secondItem="sKL-Br-Zd4" secondAttribute="bottom" constant="4" id="JzX-WZ-Tlt"/>
                                                 <constraint firstItem="MLG-IO-frO" firstAttribute="leading" secondItem="TqG-YR-coB" secondAttribute="trailing" constant="55" id="T6N-D3-rXN"/>
                                                 <constraint firstAttribute="trailing" secondItem="YdR-ZB-O25" secondAttribute="trailing" constant="15" id="ZQD-ic-ffu"/>
@@ -143,7 +143,7 @@
                                                 <constraint firstItem="MLG-IO-frO" firstAttribute="top" secondItem="YdR-ZB-O25" secondAttribute="bottom" constant="25" id="i0r-hE-Dgx"/>
                                                 <constraint firstItem="sKL-Br-Zd4" firstAttribute="top" secondItem="WMq-CS-bKA" secondAttribute="top" id="jVx-AF-VhD"/>
                                                 <constraint firstItem="r7x-5C-jhy" firstAttribute="firstBaseline" secondItem="sKL-Br-Zd4" secondAttribute="firstBaseline" id="lpG-Ll-SU4"/>
-                                                <constraint firstItem="r7x-5C-jhy" firstAttribute="leading" secondItem="sKL-Br-Zd4" secondAttribute="trailing" constant="8" id="pTH-up-SUo"/>
+                                                <constraint firstItem="r7x-5C-jhy" firstAttribute="leading" secondItem="sKL-Br-Zd4" secondAttribute="trailing" constant="24" id="pTH-up-SUo"/>
                                                 <constraint firstItem="sKL-Br-Zd4" firstAttribute="leading" secondItem="WMq-CS-bKA" secondAttribute="trailing" constant="12" id="pc0-Pn-arq"/>
                                                 <constraint firstAttribute="trailing" secondItem="MLG-IO-frO" secondAttribute="trailing" constant="69" id="sWC-At-9zt"/>
                                                 <constraint firstItem="WMq-CS-bKA" firstAttribute="top" secondItem="bNy-Mt-4TC" secondAttribute="top" constant="10" id="uPX-6S-mG2"/>
