@@ -19,6 +19,7 @@
 
 @property (strong,nonatomic) NSMutableArray *arrayOfTweets;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong,nonatomic)  UIRefreshControl *refreshControl;
 
 
 @end
@@ -31,8 +32,15 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    // init refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
     [self loadTweets];
     
+    // begin animation for refresh control
+    [self.refreshControl addTarget:self action:@selector(loadTweets) forControlEvents:UIControlEventValueChanged];
+    // place refresh control into table view
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +59,7 @@
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -76,13 +85,15 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
+//    cell.tweet = tweet;
+    
+    // This should be refactored to be inside TweetCell.m
     cell.screenName.text = tweet.user.screenName;
     cell.tweetText.text = tweet.text;
     cell.userName.text = tweet.user.name;
     cell.tweetDate.text = tweet.createdAtString;
     [cell.favsButton setTitle:[NSString stringWithFormat:@"%d",tweet.favoriteCount] forState:UIControlStateNormal];
     [cell.retweetsButton setTitle:[NSString stringWithFormat:@"%d", tweet.retweetCount] forState:UIControlStateNormal];
-    [cell.repliesButton setTitle:[NSString stringWithFormat:@"%d", tweet.retweetCount] forState:UIControlStateNormal];
 
     
     NSString *URLString = tweet.user.profilePicture;
