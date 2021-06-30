@@ -85,7 +85,7 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
-//    cell.tweet = tweet;
+    cell.tweet = tweet;
     
     // This should be refactored to be inside TweetCell.m
     cell.screenName.text = tweet.user.name;
