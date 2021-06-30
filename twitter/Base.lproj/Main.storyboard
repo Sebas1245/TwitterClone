@@ -207,9 +207,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="luc-wN-ZuJ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="153"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="luc-wN-ZuJ">
+                                <rect key="frame" x="11" y="100" width="394" height="142"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -218,6 +217,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Uat-Im-Epj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="luc-wN-ZuJ" secondAttribute="trailing" constant="9" id="HA9-Rq-nhl"/>
+                            <constraint firstItem="luc-wN-ZuJ" firstAttribute="leading" secondItem="GqK-32-68y" secondAttribute="leading" constant="11" id="KYv-kz-lit"/>
+                            <constraint firstItem="luc-wN-ZuJ" firstAttribute="top" secondItem="Uat-Im-Epj" secondAttribute="top" constant="12" id="TqC-qO-igK"/>
+                            <constraint firstItem="Uat-Im-Epj" firstAttribute="bottom" secondItem="luc-wN-ZuJ" secondAttribute="bottom" constant="620" id="U2w-24-w3h"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VlA-0O-XmS">
                         <barButtonItem key="leftBarButtonItem" image="close-icon" landscapeImage="close-icon" id="TrS-dj-PlK">
