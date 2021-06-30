@@ -14,6 +14,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "TweetDetailViewController.h"
 
 @interface TimelineViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -117,11 +118,19 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+    if([[segue identifier]  isEqualToString:@"DetailSegue"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Tweet *tweet = self.arrayOfTweets[indexPath.row];
+        
+        TweetDetailViewController *tweetDetailVC = [segue destinationViewController];
+        tweetDetailVC.tweet = tweet;
+    }
+    else {
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    }
 }
-
-
 
 @end
