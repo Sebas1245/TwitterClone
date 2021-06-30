@@ -107,6 +107,8 @@
 }
 
 -(void)didTweet:(Tweet *)tweet {
+    NSLog(@"didTweet is firing!");
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
 }
 

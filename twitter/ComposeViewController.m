@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.textView.delegate = self;
+    
 }
 - (IBAction)handleClose:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
@@ -33,7 +33,6 @@
         else {
             [self.delegate didTweet:newTweet];
             NSLog(@"Successful tweet sent out!");
-            NSLog(@"%@",newTweet);
             [self dismissViewControllerAnimated:true completion:nil];
         }
     }];
