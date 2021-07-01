@@ -21,7 +21,7 @@
 @property (strong,nonatomic) NSMutableArray *arrayOfTweets;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic)  UIRefreshControl *refreshControl;
-
+@property int currentNumTweets;
 
 @end
 
@@ -33,10 +33,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    
     // init refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
     
     [self loadTweets];
+    
+    self.currentNumTweets = 20;
     
     // begin animation for refresh control
     [self.refreshControl addTarget:self action:@selector(loadTweets) forControlEvents:UIControlEventValueChanged];
@@ -113,6 +116,26 @@
     [self.tableView reloadData];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.row + 1 == [self.arrayOfTweets count]) {
+        [self loadMoreData];
+    }
+}
+
+-(void)loadMoreData{
+    self.currentNumTweets += 20;
+    NSLog(@"Firing loadMoreData method");
+    [[APIManager shared] refreshHomeTimeline:@(self.currentNumTweets) completion:^(NSArray *tweets, NSError *error) {
+            if(tweets) {
+                NSLog(@"Refreshed home timeline");
+                self.arrayOfTweets = [[NSMutableArray alloc] initWithArray:tweets];
+                [self.tableView reloadData];
+            }
+            else {
+                NSLog(@"Error refreshing timeline: %@", error.localizedDescription);
+            }
+    }];
+}
 
 #pragma mark - Navigation
 

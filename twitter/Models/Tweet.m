@@ -27,7 +27,7 @@
         }
         self.idStr = dictionary[@"id_str"];
         self.conversationId = dictionary[@"conversation_id"];
-        self.text = dictionary[@"text"];
+        self.text = dictionary[@"full_text"];
         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
         self.retweetCount = [dictionary[@"retweet_count"] intValue];
