@@ -11,6 +11,8 @@
 
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UILabel *characterCountLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *tweetButton;
 
 @end
 
@@ -21,6 +23,8 @@
     // Do any additional setup after loading the view.
     self.textView.layer.borderWidth = 1;
     self.textView.layer.borderColor = CGColorCreateGenericRGB(47/255.0, 124/255.0, 246/255.0, 1);
+    self.textView.delegate = self;
+    self.tweetButton.enabled = false;
     
 }
 - (IBAction)handleClose:(id)sender {
@@ -38,6 +42,25 @@
             [self dismissViewControllerAnimated:true completion:nil];
         }
     }];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    // Set the max character limit
+    int characterLimit = 140;
+
+    // Construct what the new text would be if we allowed the user's latest edit
+    NSString *newText = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
+    NSLog(@"New text = %@", newText);
+    if(newText.length == 0)
+        self.tweetButton.enabled = false;
+    else
+        self.tweetButton.enabled = true;
+
+    // TODO: Update character count label
+    self.characterCountLabel.text = [NSString stringWithFormat:@"%lu", (unsigned long)newText.length];
+
+    // Should the new text should be allowed? True/False
+    return newText.length < characterLimit;
 }
 
 /*

@@ -339,21 +339,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="luc-wN-ZuJ">
-                                <rect key="frame" x="11" y="100" width="394" height="142"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's happening?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="luc-wN-ZuJ">
+                                <rect key="frame" x="10" y="100" width="394" height="142"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="142" id="A9a-WJ-s2r"/>
+                                </constraints>
+                                <color key="textColor" systemColor="placeholderTextColor"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfh-yl-LFc">
+                                <rect key="frame" x="358.66666666666669" y="250.33333333333334" width="10.333333333333314" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNN-ss-2na">
+                                <rect key="frame" x="371" y="250" width="33" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Uat-Im-Epj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="luc-wN-ZuJ" secondAttribute="trailing" constant="9" id="HA9-Rq-nhl"/>
-                            <constraint firstItem="luc-wN-ZuJ" firstAttribute="leading" secondItem="GqK-32-68y" secondAttribute="leading" constant="11" id="KYv-kz-lit"/>
-                            <constraint firstItem="luc-wN-ZuJ" firstAttribute="top" secondItem="Uat-Im-Epj" secondAttribute="top" constant="12" id="TqC-qO-igK"/>
-                            <constraint firstItem="Uat-Im-Epj" firstAttribute="bottom" secondItem="luc-wN-ZuJ" secondAttribute="bottom" constant="620" id="U2w-24-w3h"/>
+                            <constraint firstItem="wNN-ss-2na" firstAttribute="centerY" secondItem="qfh-yl-LFc" secondAttribute="centerY" id="1VQ-Jj-FpE"/>
+                            <constraint firstItem="wNN-ss-2na" firstAttribute="trailing" secondItem="luc-wN-ZuJ" secondAttribute="trailing" id="IEs-AS-Zd8"/>
+                            <constraint firstItem="luc-wN-ZuJ" firstAttribute="leading" secondItem="Uat-Im-Epj" secondAttribute="leading" constant="10" id="Tqm-zZ-Mcl"/>
+                            <constraint firstItem="wNN-ss-2na" firstAttribute="leading" secondItem="qfh-yl-LFc" secondAttribute="trailing" constant="2" id="a6Q-pn-GIk"/>
+                            <constraint firstItem="wNN-ss-2na" firstAttribute="top" secondItem="luc-wN-ZuJ" secondAttribute="bottom" constant="8" id="elT-X0-AS0"/>
+                            <constraint firstItem="Uat-Im-Epj" firstAttribute="trailing" secondItem="luc-wN-ZuJ" secondAttribute="trailing" constant="10" id="iH6-Cz-I2p"/>
+                            <constraint firstItem="luc-wN-ZuJ" firstAttribute="top" secondItem="Uat-Im-Epj" secondAttribute="top" constant="12" id="l4c-NI-m21"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VlA-0O-XmS">
@@ -369,12 +387,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="characterCountLabel" destination="qfh-yl-LFc" id="WbD-Hv-AOS"/>
                         <outlet property="textView" destination="luc-wN-ZuJ" id="am2-yJ-YyW"/>
+                        <outlet property="tweetButton" destination="hSL-sL-6TB" id="pgb-Dz-1e2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ux-tr-85h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1329" y="1560"/>
+            <point key="canvasLocation" x="1328.985507246377" y="1559.5982142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WUT-Ke-VeR">
@@ -422,8 +442,8 @@
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
         <image name="retweet-icon-green" width="30" height="30"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
