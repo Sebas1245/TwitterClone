@@ -48,7 +48,8 @@
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterNoStyle;
         // Convert Date to String
-        self.dateString = [NSString stringWithFormat:@"%ld:%ld - %@", (long)date.hour,(long)date.minute, [formatter stringFromDate:date]];
+        NSString *minuteString = date.minute < 10 ? [NSString stringWithFormat:@"0%ld", (long)date.minute] : [NSString stringWithFormat:@"%ld", (long)date.hour];
+        self.dateString = [NSString stringWithFormat:@"%ld:%@ - %@", (long)date.hour,minuteString, [formatter stringFromDate:date]];
         
         self.createdAtString = date.shortTimeAgoSinceNow;
     }

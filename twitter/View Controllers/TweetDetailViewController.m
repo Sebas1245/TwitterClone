@@ -11,10 +11,20 @@
 #import "SecondDetailViewCell.h"
 #import "ThirdDetailViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "APIManager.h"
 
 
-@interface TweetDetailViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface TweetDetailViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *detailProfilePicture;
+@property (weak, nonatomic) IBOutlet UILabel *detailName;
+
+@property (weak, nonatomic) IBOutlet UILabel *detailUsername;
+@property (weak, nonatomic) IBOutlet UILabel *detailTweetText;
+@property (weak, nonatomic) IBOutlet UILabel *detailDate;
+@property (weak, nonatomic) IBOutlet UILabel *detailRTCount;
+@property (weak, nonatomic) IBOutlet UILabel *detailFavCount;
+@property (weak, nonatomic) IBOutlet UIButton *retweetBtn;
+@property (weak, nonatomic) IBOutlet UIButton *favsBtn;
 
 @end
 
@@ -23,44 +33,92 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    NSLog(@"%@", self.tweet);
+    NSURL *url = [NSURL URLWithString:self.tweet.user.profilePicture];
+    [self.detailProfilePicture setImageWithURL:url];
+    self.detailName.text = self.tweet.user.name;
+    self.detailUsername.text = self.tweet.user.screenName;
+    self.detailTweetText.text = self.tweet.text;
+    self.detailDate.text = self.tweet.dateString;
+    self.detailFavCount.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];;
+    self.detailRTCount.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
+    
+    [self refreshRtData];
+    [self refreshFavData];
+    
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if(indexPath.row == 0) {
-        // deque first detail cell
-        FirstDetailViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FirstDetailCell"];
-        cell.detailName.text = self.tweet.user.name;
-        cell.detailDate.text = self.tweet.dateString;
-        cell.detailUsername.text = self.tweet.user.screenName;
-        cell.detailTweetText.text = self.tweet.text;
-        
-        NSURL *url = [NSURL URLWithString:self.tweet.user.profilePicture];
-        [cell.detailProfilePic setImageWithURL:url];
-        return cell;
-    
-    }
-    else if(indexPath.row == 1) {
-        // deque second detail cell
-        SecondDetailViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SecondDetailCell"];
-        cell.detailFavCount.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
-        cell.detailRTCount.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
-        return cell;
+- (IBAction)handleRetweet:(id)sender {
+    if(self.tweet.retweeted) {
+        self.tweet.retweeted = false;
+        self.tweet.retweetCount--;
+        [[APIManager shared] unretweet:self.tweet completion:^(Tweet *tweet, NSError *err) {
+            if(err) {
+                NSLog(@"Error unretweeting tweet: %@", err.localizedDescription);
+            }
+            else {
+                NSLog(@"Successfully unrewteeeted the following Tweet: %@", tweet.text);
+                [self refreshRtData];
+            }
+        }];
     }
     else {
-        // deque third detail cell
-        ThirdDetailViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThirdDetailCell"];
-        cell.tweet = self.tweet;
-        return cell;
+        self.tweet.retweeted = true;
+        self.tweet.retweetCount++;
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *err) {
+            if(err) {
+                NSLog(@"Error retweeting tweet: %@", err.localizedDescription);
+            }
+            else {
+                NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+                [self refreshRtData];
+            }
+        }];
+ 
+    }
+}
+- (IBAction)handleFavorite:(id)sender {
+    if(self.tweet.favorited) {
+        self.tweet.favorited = false;
+        self.tweet.favoriteCount--;
+        NSLog(@"Decreased count");
+        [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *err) {
+            if(err) {
+                NSLog(@"Error unfavoriting tweet: %@", err.localizedDescription);
+            }
+            else {
+                NSLog(@"Successfully unfavorited the following Tweet: %@", tweet.text);
+                [self refreshFavData];
+            }
+        }];
+    }
+    else {
+        self.tweet.favorited = true;
+        self.tweet.favoriteCount++;
+        NSLog(@"Updated count");
+        // TODO: Update cell UI
+        
+        // Todo: Send a POST request to the POST favorites/create endpoint
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+                [self refreshFavData];
+            }
+        }];
     }
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+-(void)refreshFavData {
+    [self.favsBtn setSelected:self.tweet.favorited];
 }
+
+-(void)refreshRtData {
+    [self.retweetBtn setSelected:self.tweet.retweeted];
+}
+
+
 /*
 #pragma mark - Navigation
 
