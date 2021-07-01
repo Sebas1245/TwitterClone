@@ -26,6 +26,7 @@
             dictionary = originalTweet;
         }
         self.idStr = dictionary[@"id_str"];
+        self.conversationId = dictionary[@"conversation_id"];
         self.text = dictionary[@"text"];
         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
@@ -47,6 +48,8 @@
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterNoStyle;
         // Convert Date to String
+        self.dateString = [NSString stringWithFormat:@"%ld:%ld - %@", (long)date.hour,(long)date.minute, [formatter stringFromDate:date]];
+        
         self.createdAtString = date.shortTimeAgoSinceNow;
     }
     return self;

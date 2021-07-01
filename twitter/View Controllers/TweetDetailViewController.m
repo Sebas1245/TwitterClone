@@ -34,7 +34,7 @@
         // deque first detail cell
         FirstDetailViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FirstDetailCell"];
         cell.detailName.text = self.tweet.user.name;
-        cell.detailDate.text = self.tweet.createdAtString;
+        cell.detailDate.text = self.tweet.dateString;
         cell.detailUsername.text = self.tweet.user.screenName;
         cell.detailTweetText.text = self.tweet.text;
         
