@@ -57,6 +57,8 @@ Here's a walkthrough of implemented user stories:
 
 ![](./gif2.gif)
 
+![](./gif3.gif)
+
 
 ## Notes
 
