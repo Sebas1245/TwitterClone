@@ -1,4 +1,4 @@
-# Project 3 - *Name of App Here*
+# Project 3 - *TwitterClone*
 
 **TwitterClone** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
@@ -53,6 +53,9 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+![](./gif1.gif)
+
+![](./gif2.gif)
 
 
 ## Notes
