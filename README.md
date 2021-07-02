@@ -2,7 +2,7 @@
 
 **TwitterClone** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **12** hours spent in total
+Time spent: **18** hours spent in total
 
 ## User Stories
 
@@ -34,7 +34,7 @@ The following **optional** features are implemented:
 - [X] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 - [X] When composing, you should have a countdown for the number of characters remaining for the tweet (out of 280) (**1 point**)
 - [X] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
-- [ ] User can reply to any tweet, and replies should be prefixed with the username and the reply_id should be set when posting the tweet (**2 points**)
+- [X] User can reply to any tweet, and replies should be prefixed with the username and the reply_id should be set when posting the tweet (**2 points**)
 - [ ] User sees embedded images in tweet if available
 - [ ] User can switch between timeline, mentions, or profile view through a tab bar (**3 points**)
 - [ ] Profile Page: pulling down the profile page should blur and resize the header image. (**4 points**)
@@ -46,30 +46,30 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How to implement the clickable links (I didn't quite understand how to turn the video tutorial from Swift to Objective C).
+2. How would one go about making a table view occupy only a percentage of the phone screen.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [Kap](https://getkap.co/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Getting to connect to the different Twitter APIs was one of the more fun and challenging tasks I had to do for this project. Definitely working with autolayout and getting everything to work properly with different phone sizes was the most challenging part for this project. 
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
+-[DateTools](https://github.com/MatthewYork/DateTools#formatted-date-strings) - date formatting library
+-BOBOAuthManager - library to get OAuth with Twitter API working
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2021 Sebastián Saldaña
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

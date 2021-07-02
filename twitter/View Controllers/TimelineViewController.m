@@ -149,6 +149,13 @@
         TweetDetailViewController *tweetDetailVC = [segue destinationViewController];
         tweetDetailVC.tweet = tweet;
     }
+    else if([[segue identifier] isEqualToString:@"ReplySegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:[[sender superview] superview]];
+        composeController.originalTweet = self.arrayOfTweets[indexPath.row];
+        composeController.delegate = self;
+    }
     else {
         UINavigationController *navigationController = [segue destinationViewController];
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;

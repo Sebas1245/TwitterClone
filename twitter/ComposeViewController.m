@@ -25,23 +25,42 @@
     self.textView.layer.borderColor = CGColorCreateGenericRGB(47/255.0, 124/255.0, 246/255.0, 1);
     self.textView.delegate = self;
     self.tweetButton.enabled = false;
+    if(self.originalTweet)
+        self.textView.text = [NSString stringWithFormat:@"@%@", self.originalTweet.user.screenName];
     
 }
 - (IBAction)handleClose:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 - (IBAction)handleTweet:(id)sender {
-    [[APIManager shared] postStatusWithText:self.textView.text completion:^(Tweet *newTweet, NSError *reqErr) {
-        if(reqErr) {
-            NSLog(@"Error sending tweet: %@", reqErr.localizedDescription);
-            // do something else rather than just dismissing the view
-        }
-        else {
-            [self.delegate didTweet:newTweet];
-            NSLog(@"Successful tweet sent out!");
-            [self dismissViewControllerAnimated:true completion:nil];
-        }
-    }];
+    if(!self.originalTweet) {
+        [[APIManager shared] postStatusWithText:self.textView.text completion:^(Tweet *newTweet, NSError *reqErr) {
+            if(reqErr) {
+                NSLog(@"Error sending tweet: %@", reqErr.localizedDescription);
+                // do something else rather than just dismissing the view
+            }
+            else {
+                [self.delegate didTweet:newTweet];
+                NSLog(@"Successful tweet sent out!");
+                [self dismissViewControllerAnimated:true completion:nil];
+            }
+        }];
+    }
+    else {
+
+        [[APIManager shared] postReply:self.textView.text : self.originalTweet.idStr completion:^(Tweet *reply, NSError *error) {
+            if(error) {
+                NSLog(@"Error sending reply: %@", error.localizedDescription);
+                // do something else rather than just dismissing the view
+            }
+            else {
+                [self.delegate didTweet:reply];
+                NSLog(@"Successful reply sent out!");
+                [self dismissViewControllerAnimated:true completion:nil];
+            }
+        }];
+        
+    }
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{

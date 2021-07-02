@@ -27,4 +27,6 @@
 - (void)unretweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 // GET timeline with count for infinite scroll function
 - (void)refreshHomeTimeline:(NSNumber *) numberOfTweets completion:(void(^)(NSArray *tweets, NSError *error))completion;
+// POST reply method
+- (void)postReply:(NSString *)text :(NSString *)id_existing_tweet completion:(void (^)(Tweet *, NSError *))completion;
 @end

@@ -90,7 +90,23 @@ static NSString * const baseURLString = @"https://api.twitter.com";
 // POST tweet method
 - (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion {
     NSString *urlString = @"1.1/statuses/update.json";
-    NSDictionary *parameters = @{@"status": text};
+    NSDictionary *parameters = @{@"tweet_mode": @"extended", @"status": text};
+    
+    [self POST:urlString parameters:parameters progress:nil
+        success:^(NSURLSessionDataTask * _Nonnull task,NSDictionary* _Nullable tweetDictionary) {
+            Tweet *newTweet = [[Tweet alloc] initWithDictionary:tweetDictionary];
+            completion(newTweet, nil); // callback to be handled and implemented when POST tweet method is called
+        }
+        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            completion(nil,error); // callback to be handled when there is an error with the POST request to the Twitter API
+        }
+    ];
+}
+
+// POST reply method
+- (void)postReply:(NSString *)text :(NSString *)id_existing_tweet completion:(void (^)(Tweet *, NSError *))completion {
+    NSString *urlString = @"1.1/statuses/update.json";
+    NSDictionary *parameters = @{@"tweet_mode": @"extended",@"status": text, @"in_reply_to_status_id": id_existing_tweet};
     
     [self POST:urlString parameters:parameters progress:nil
         success:^(NSURLSessionDataTask * _Nonnull task,NSDictionary* _Nullable tweetDictionary) {
