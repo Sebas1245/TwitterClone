@@ -12,6 +12,7 @@
 #import "ThirdDetailViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
+#import "ComposeViewController.h"
 
 
 @interface TweetDetailViewController ()
@@ -119,15 +120,17 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.originalTweet = self.tweet;
 }
-*/
 
 
 @end

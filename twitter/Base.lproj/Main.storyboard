@@ -279,6 +279,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2yC-AQ-8Yv">
                                 <rect key="frame" x="20" y="286.66666666666669" width="30" height="30"/>
                                 <state key="normal" image="reply-icon"/>
+                                <connections>
+                                    <segue destination="1Do-bc-Gjl" kind="show" id="OBN-mq-mhF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLz-l9-8zv">
                                 <rect key="frame" x="197" y="286.66666666666669" width="84" height="30"/>
@@ -432,6 +435,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1Do-bc-Gjl" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="eVH-UR-mnu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9X5-RC-oh8">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -447,7 +451,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lrd-Rk-51q"/>
+        <segue reference="OBN-mq-mhF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="TwitterLogoBlue" width="133.33332824707031" height="133.33332824707031"/>
